@@ -132,7 +132,7 @@ $("#btnCalcular").click ((e) => {
     const descuentoImplicito = (a,b,c,d) => ((a-(b/c))*d);
     descuentoImplicitoPesos = descuentoImplicito(1, sumatoria, monto, 100)
     $("#descuentoImplicito").append(`<div class="alert alert-success marginAlert" role="alert">
-                                        <h4 class="alert-heading">El descuento implícito es: ${Math.round(descuentoImplicito(1, sumatoria, monto, 100))}% !!!</h4>
+                                        <h4 class="alert-heading">El descuento implícito es: ${Math.round(descuentoImplicito(1, sumatoria, monto, 100))}%</h4>
                                         <p>Esto significa que si te hacen un descuento mayor al ${Math.round(descuentoImplicito(1, sumatoria, monto, 100))}% te conviene abonar en efectivo.</p>
                                         <hr>
                                         <p class="mb-0">De otra forma aprovecha las cuotas sin interés.</p>
@@ -206,7 +206,6 @@ $(document).ready(function () {
 
 
 window.addEventListener('load', () => {
-    
     let alert = `<div class="alert alert-success" role="alert">
                 Completa todos los datos y te ayudamos a tomar la decisión.
                 </div>`;
