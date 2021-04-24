@@ -8,6 +8,11 @@ class Variables{
     }
 }
 
+const pesos = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+});
+
 //---------------------------------- guardar datos del formulario y comunicar dato ingresado -------------------------------//
 let tasa 
 let monto
@@ -31,7 +36,7 @@ $("#myMonto").change(function (miEvento){
     miEvento.preventDefault();
     monto = parseInt(miEvento.target.value);
     if (monto > 0) {
-        $("#notificacionMonto").html(`<p class="pAnimado animate__animate animate__bounceIn">Monto ingresado para cálculo: $${monto}</p>`);
+        $("#notificacionMonto").html(`<p class="pAnimado animate__animate animate__bounceIn">Monto ingresado para cálculo: ${pesos.format(monto)}</p>`);
     } else {
         $("#notificacionMonto").html(`<p class="pAnimado2 animate__animate animate__bounceIn">Ingresar dato válido.</p>`);
     }
@@ -75,6 +80,7 @@ $("#btnCalcular").click ((e) => {
     let sumatoriaCuotas = 0;
     let sumatoria = 0;
     const valorCuota = (a,b) => (a/b);
+    valorCuotaPesos = valorCuota(monto, cuotas)
     $("#descuentoImplicito").empty();
     $("#estructuraTable").empty();
     $("#notificacionValorActual").empty();
@@ -97,32 +103,34 @@ $("#btnCalcular").click ((e) => {
                                 </table>`);
     for (i = 1; i <= cuotas ; i++) {     
         const valorActualCuota = (a,b,c,d,e,f,g) => ((a/b) / ((c+((d/e)/b)) ** (f+g)));
+        valorActualCuotaPesos = valorActualCuota(monto, cuotas, 1, tasa, 100, i, gracia)
         $("#notificacionValorActual").append(`<table class="table">
                                                 <tbody>
                                                     <tr class="row">
                                                         <th class="col-4">${i}</th>
-                                                        <td class="col-4">$ ${Math.round(valorCuota(monto, cuotas)*100)/100}</td>
-                                                        <td class="col-4">$ ${Math.round(valorActualCuota(monto, cuotas, 1, tasa, 100, i, gracia) * 100) / 100}</td>                                       
+                                                        <td class="col-4">${pesos.format(valorCuotaPesos)}</td>
+                                                        <td class="col-4">${pesos.format(valorActualCuotaPesos)}</td>                                       
                                                     </tr>
                                                 </tbody>
                                             </table>`);
         casos.push(new Variables(tasa, monto, cuotas, gracia));
-        sumatoriaCuotas += Math.round(valorCuota(monto, cuotas)*100)/100;
-        sumatoria += Math.round(valorActualCuota(monto, cuotas, 1, tasa, 100, i, gracia) * 100) / 100;
+        sumatoriaCuotas += valorCuotaPesos;
+        sumatoria += valorActualCuotaPesos;
           
     }
     $("#sumatoriaValorActual").append(`<table class="table">
                                             <tfoot>
                                                 <tr class="row">
                                                 <th class="col-4">TOTAL</th>
-                                                    <th class="col-4">$ ${sumatoriaCuotas}</th>
-                                                    <th class="col-4">$ ${sumatoria}</th>
+                                                    <th class="col-4">${pesos.format(sumatoriaCuotas)}</th>
+                                                    <th class="col-4">${pesos.format(sumatoria)}</th>
                                                 </tr>
                                             </tfoot>
                                     </table>`);
     
     
     const descuentoImplicito = (a,b,c,d) => ((a-(b/c))*d);
+    descuentoImplicitoPesos = descuentoImplicito(1, sumatoria, monto, 100)
     $("#descuentoImplicito").append(`<div class="alert alert-success marginAlert" role="alert">
                                         <h4 class="alert-heading">El descuento implícito es: ${Math.round(descuentoImplicito(1, sumatoria, monto, 100))}% !!!</h4>
                                         <p>Esto significa que si te hacen un descuento mayor al ${Math.round(descuentoImplicito(1, sumatoria, monto, 100))}% te conviene abonar en efectivo.</p>
