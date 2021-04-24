@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <title>Simulador de Pago.</title>
+  </head>
+  <body id="empezar">
+    <main>
+      <div class="backh1">
+        <h1 class="container animate__animate animate__fadeInDown">¿Conviene pagar en cuotas o aprovechar un descuento en efectivo?</h1>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="back--form centrar col-md-8">
+            <div id="notificacion">
+          
+            </div>
+            <div class="form-row centrar">
+              <div class="form-group col-md-10 col-12 col-lg-10 centrar margin">
+                <div>
+                  <h2>¿Qué tasa de capitalización anual consigue?</h2>
+                  <p>
+                    Se refiere a la tasa que podemos conseguir de inversión. Ej:
+                    plazo fijo.
+                  </p>
+                  <p>Aclaración: Ingresar una tasa anual en %.</p>
+                  <div class="col-6 col-sm-6 col-md-7 col-lg-5 col-xl-4 centrar" id="myTasa">
+                    <input type="number" class="form-control"/>
+                  </div>
+                </div>
+                <div id="notificacionTasa" class="notificacion"></div>
+              </div>
+            </div>
+            <div class="form-row centrar">
+              <div class="form-group col-md-10 col-12 col-lg-10 centrar">
+                <div>
+                  <h2>¿Cual es el monto a abonar?</h2>
+                  <div class="col-6 col-sm-6 col-md-7 col-lg-5 col-xl-4 centrar" id="myMonto">
+                    <input type="number" class="form-control"/>
+                  </div>
+                </div>
+                <div id="notificacionMonto" class="notificacion"></div>
+              </div>
+            </div>
+            <div class="form-row centrar">
+              <div class="form-group col-md-10 col-12 col-lg-10 centrar">
+                <div>
+                  <h2>¿En cuantas cuotas mensuales puede abonar?</h2>
+                  <p></p>
+                  <div class="col-6 col-sm-6 col-md-7 col-lg-5 col-xl-4 centrar" id="myCuotas">
+                    <input type="number" class="form-control"/>
+                  </div>
+                </div>
+                <div id="notificacionCuotas" class="notificacion"></div>
+              </div>
+            </div>
+            <div class="form-row centrar">
+              <div class="form-group col-md-10 col-12 col-lg-10 centrar">
+                <div>
+                  <h2>¿Tiene algún mes de gracia?</h2>
+                  <p>Si tu respuesta es NO ingresá 0.</p>
+                  <div class="col-6 col-sm-6 col-md-7 col-lg-5 col-xl-4 centrar" id="myGracia">
+                    <input type="number" class="form-control"/>
+                  </div>
+                </div>
+                <div id="notificacionGracia" class="notificacion"></div>
+              </div>
+            </div>
+            <div>
+              <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="boton" id="btnCalcular">Calcular</button>
+            </div"> 
+                <div id="notificacionError" class="notificacion"></div>   
+                <div id="descuentoImplicito"></div>
+                <div id="estructuraTable"></div>
+                <div id="notificacionValorActual"></div>
+                <div id="sumatoriaValorActual"></div>   
+            </div>
+        </div>
+      </div>
+      <div id="subtitulo" class="mensaje"></div>
+      <div id="btnClear">
+      </div>
+    </main>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
+
+
