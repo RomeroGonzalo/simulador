@@ -1,4 +1,4 @@
-//---------------------------------- DECLARACION DE CLASES -------------------------------//
+//---------------------------------- DECLARACION DE CLASES PRINCIPALES -------------------------------//
 class Variables{
     constructor(tasa, monto, cuotas, gracia) { 
         this.tasa = parseInt(tasa);
@@ -8,18 +8,19 @@ class Variables{
     }
 }
 
+//FORMATO PESOS
 const pesos = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
 });
 
-//---------------------------------- guardar datos del formulario y comunicar dato ingresado -------------------------------//
+//---------------------------------- GUARDAR DATOS DEL FORMULARIO Y COMUNICAR DATOS INGRESADOS -------------------------------//
 let tasa 
 let monto
 let cuotas
 let gracia
 
-//tasa
+//TASA
 $("#myTasa").change(function(miEvento){
     miEvento.preventDefault();
     tasa = parseInt(miEvento.target.value);
@@ -31,7 +32,7 @@ $("#myTasa").change(function(miEvento){
     
 });
 
-//monto
+//MONTO
 $("#myMonto").change(function (miEvento){    
     miEvento.preventDefault();
     monto = parseInt(miEvento.target.value);
@@ -43,7 +44,7 @@ $("#myMonto").change(function (miEvento){
     
 });
 
-//cuotas
+//CUOTAS
 $("#myCuotas").change(function (miEvento){
     miEvento.preventDefault();
     cuotas = parseInt(miEvento.target.value);
@@ -56,7 +57,7 @@ $("#myCuotas").change(function (miEvento){
 });
 
 
-//gracia
+//GRACIA
 $("#myGracia").change(function (miEvento){
     miEvento.preventDefault();
     gracia = parseInt(miEvento.target.value);
@@ -73,7 +74,7 @@ $("#myGracia").change(function (miEvento){
 const casos = [];
 
 //----------------------------------FÓRMULAS-------------------------------//
-//boton calcular y notifica en la misma página
+//BOTON CALCULAR Y NOTIFICACIÓN
 $("#btnCalcular").click ((e) => {   
     
     let i;
